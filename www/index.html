@@ -8,6 +8,15 @@
 	<script src="angular.js" type="text/javascript"></script>
 	<script src="script.js" type="text/javascript"></script>
 	<script type="text/javascript" src="cordova.js"></script>
+	<script>
+		document.addEventListener("deviceready", onDeviceReady, false);
+		function onDeviceReady() {
+			document.addEventListener("backbutton", function (e) {
+				e.preventDefault();
+				gotopage(1);
+			}, false );
+		}
+	</script>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
 
