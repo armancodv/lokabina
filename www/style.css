@@ -404,3 +404,8 @@ input[type=submit] {
 	text-align:right;
 	padding:20px 10px 10px 10px;
 }
+
+.error {
+	padding: 5px;
+	color: #aa0000;
+}

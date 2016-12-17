@@ -119,7 +119,7 @@
 			</td>
 		</tr>
 		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']==false">
-			<p ng-if="password_data['checkpassword']==false">نامعتبر</p>
+			<p ng-if="password_data['checkpassword']==false" class="error">نام کاربری و کلمه عبور نامعتبر می باشد.</p>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">نام کاربری</td><td class="input-value"><input type="text" ng-model="username" dir="ltr"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">کلمه عبور</td><td class="input-value"><input type="password" ng-model="password" dir="ltr"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable"></td><td class="input-value"><table cellpadding="0" cellspacing="0" class="button" ng-click="check_password(username,password)"><tr><td>ورود</td></tr></table></td></tr></table>
@@ -147,15 +147,19 @@
 				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
 			</td>
 		</tr>
-		<tr><td class="page-table-main" colspan="2">
-			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* نام کاربری</td><td class="input-value"><input type="text" ng-model="username" dir="ltr"></td></tr></table>
+		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']!=true">
+			<p ng-if="signup_data['inserted']==false" class="error">{{signup_data['error']}}</p>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* نام کاربری</td><td class="input-value"><input type="text" ng-model="username2" dir="ltr"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* کلمه عبور</td><td class="input-value"><input type="password" ng-model="password" dir="ltr"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* تكرار کلمه عبور</td><td class="input-value"><input type="password" ng-model="repassword" dir="ltr"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* نام</td><td class="input-value"><input type="text" ng-model="firstname" dir="rtl"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* نام خانوادگی</td><td class="input-value"><input type="text" ng-model="lastname" dir="rtl"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* آدرس ایمیل</td><td class="input-value"><input type="text" ng-model="email" dir="ltr"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">شماره همراه</td><td class="input-value"><input type="text" ng-model="phone" dir="ltr"></td></tr></table>
-			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable"></td><td class="input-value"><table cellpadding="0" cellspacing="0" class="button" ng-click="check_password(username,password)"><tr><td>ورود</td></tr></table></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable"></td><td class="input-value"><table cellpadding="0" cellspacing="0" class="button" ng-click="insert_user(username2,password,repassword,firstname,lastname,email,phone)"><tr><td>ثبت نام</td></tr></table></td></tr></table>
+		</td></tr>
+		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']==true">
+			<table cellpadding="0" cellspacing="0" class="button" ng-click="insert_logout()"><tr><td>خروج</td></tr></table>
 		</td></tr>
 		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>

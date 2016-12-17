@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope, $http, $timeout) {
-	$scope.info_url='http://lokabina.com/'
+app.controller('myCtrl', function($scope, $http) {
+	$scope.info_url='http://lokabina.com/';
 
 	if(localStorage.getItem('login_code')==null) {
 		localStorage.setItem('username', '');
@@ -70,6 +70,15 @@ app.controller('myCtrl', function($scope, $http, $timeout) {
 			.then(function(response) {
 				$scope.purchase_data = response.data;
 				$scope.select_sound(sound);
+			});
+	}
+
+	$scope.insert_user=function (username,password,repassword,firstname,lastname,email,phone) {
+		$scope.signup_data=[];
+		$http.get($scope.info_url+'json_signup.php?username='+username+'&password='+password+'&repassword='+repassword+'&firstname='+firstname+'&lastname='+lastname+'&gender=1&email='+email+'&phone='+phone)
+			.then(function(response) {
+				$scope.signup_data = response.data;
+				$scope.check_password(username,password);
 			});
 	}
 
