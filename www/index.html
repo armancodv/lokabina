@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name="viewport">
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<script src="angular.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+<script type="text/javascript" src="cordova.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<div id="page1">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+	<tr class="page-table-bar">
+		<td class="page-table-bar-right">لوکابینا<span class="page-table-bar-subtitle">مرجع کنترل امواج مغزی لوکا</span></td>
+		<td class="page-table-bar-left"></td>
+	</tr>
+		<tr class="page-table-subbar">
+			<td class="page-table-subbar-right">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(4)">ورود</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(4)">{{login_data['name']}}</span>
+			</td>
+			<td class="page-table-subbar-left">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(5)">ثبت نام</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+			</td>
+		</tr>
+	<tr><td class="page-table-main" colspan="2">
+		<table ng-repeat="(p_key, p_value) in categories" ng-click="select_category(p_key)" cellpadding="0" cellspacing="0" class="property2" onClick="javascript:gotopage(2);"><tr><td class="property2-thumb" style="background-image: url('{{info_url}}template/images/categories/{{p_key}}.jpg')"></td><td class="property2-name">{{p_value['category']}}</td></tr></table>
+	</td></tr>
+	<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+<div id="page2">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+		<tr class="page-table-bar">
+			<td class="page-table-bar-right">لوکابینا<span class="page-table-bar-subtitle">مرجع کنترل امواج مغزی لوکا</span></td>
+			<td class="page-table-bar-left"><a href="javascript:gotopage(1)"><table cellpadding="0" cellspacing="0" class="button"><tr><td>بازگشت</td></tr></table></a></td>
+		</tr>
+		<tr class="page-table-subbar">
+			<td class="page-table-subbar-right">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(4)">ورود</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(4)">{{login_data['name']}}</span>
+			</td>
+			<td class="page-table-subbar-left">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(5)">ثبت نام</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+			</td>
+		</tr>
+		<tr><td class="page-table-main" colspan="2">
+			<table ng-repeat="(p_key, p_value) in sounds" ng-click="select_sound(p_key)" cellpadding="0" cellspacing="0" class="property2" onClick="javascript:gotopage(3);"><tr><td class="property2-thumb" style="background-image: url('{{info_url}}template/images/sounds/{{p_key}}.png')"></td><td class="property2-name">{{p_value['name']}}<p class="property2-description">{{p_value['description']}}</p></td></tr></table>
+		</td></tr>
+		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+<div id="page3">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+		<tr class="page-table-bar">
+			<td class="page-table-bar-right">لوکابینا<span class="page-table-bar-subtitle">مرجع کنترل امواج مغزی لوکا</span></td>
+			<td class="page-table-bar-left"><a href="javascript:gotopage(2)"><table cellpadding="0" cellspacing="0" class="button"><tr><td>بازگشت</td></tr></table></a></td>
+		</tr>
+		<tr class="page-table-subbar">
+			<td class="page-table-subbar-right">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(4)">ورود</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(4)">{{login_data['name']}}</span>
+			</td>
+			<td class="page-table-subbar-left">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(5)">ثبت نام</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+			</td>
+		</tr>
+		<tr><td class="page-table-main" colspan="2">
+			<table cellpadding="0" cellspacing="0" class="sound">
+				<tr><td class="sound-image" style="background-image: url('{{info_url}}template/images/sounds/{{sound_selected}}.png')"></td></tr>
+				<tr><td class="sound-text">
+					<span class="sound-name">{{sounds[sound_selected]['name']}}</span>
+					<span class="sound-time">{{sounds[sound_selected]['time']}} دقیقه</span><br>
+					<div ng-if="soundaccess[sound_selected]['access']==true"><table cellpadding="0" cellspacing="0" class="button" ng-click="play_sound(info_url+'sounds/'+soundaccess[sound_selected]['url'])"><tr><td>پخش</td></tr></table></div>
+					<div ng-if="soundaccess[sound_selected]['access']==true"><table cellpadding="0" cellspacing="0" class="button" onclick="javascript:audio.pause();"><tr><td>توقف</td></tr></table></div>
+					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==false)"><table cellpadding="0" cellspacing="0" class="button" onclick="javascript:gotopage(4)"><tr><td>ورود</td></tr></table></div>
+					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])>=sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="purchase(sound_selected)"><tr><td>خرید</td></tr></table></div>
+					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])<sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" onclick="javascript:gotopage(6)"><tr><td>افزایش اعتبار</td></tr></table></div>
+					<br><span class="sound-cost">{{sounds[sound_selected]['cost']}} تومان</span><br>
+					<span class="sound-description">{{sounds[sound_selected]['description']}}</span>
+				</td></tr>
+			</table>
+		</td></tr>
+		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+<div id="page4">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+		<tr class="page-table-bar">
+			<td class="page-table-bar-right">لوکابینا<span class="page-table-bar-subtitle">مرجع کنترل امواج مغزی لوکا</span></td>
+			<td class="page-table-bar-left"><a href="javascript:gotopage(1)"><table cellpadding="0" cellspacing="0" class="button"><tr><td>بازگشت</td></tr></table></a></td>
+		</tr>
+		<tr class="page-table-subbar">
+			<td class="page-table-subbar-right">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(4)">ورود</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(4)">{{login_data['name']}}</span>
+			</td>
+			<td class="page-table-subbar-left">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(5)">ثبت نام</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+			</td>
+		</tr>
+		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']==false">
+			<p ng-if="password_data['checkpassword']==false">نامعتبر</p>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">نام کاربری</td><td class="input-value"><input type="text" ng-model="username" dir="ltr"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">کلمه عبور</td><td class="input-value"><input type="password" ng-model="password" dir="ltr"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable"></td><td class="input-value"><table cellpadding="0" cellspacing="0" class="button" ng-click="check_password(username,password)"><tr><td>ورود</td></tr></table></td></tr></table>
+		</td></tr>
+		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']==true">
+			<table cellpadding="0" cellspacing="0" class="button" ng-click="insert_logout()"><tr><td>خروج</td></tr></table>
+		</td></tr>
+		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+<div id="page5">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+		<tr class="page-table-bar">
+			<td class="page-table-bar-right">لوکابینا<span class="page-table-bar-subtitle">مرجع کنترل امواج مغزی لوکا</span></td>
+			<td class="page-table-bar-left"><a href="javascript:gotopage(1)"><table cellpadding="0" cellspacing="0" class="button"><tr><td>بازگشت</td></tr></table></a></td>
+		</tr>
+		<tr class="page-table-subbar">
+			<td class="page-table-subbar-right">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(4)">ورود</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(4)">{{login_data['name']}}</span>
+			</td>
+			<td class="page-table-subbar-left">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(5)">ثبت نام</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+			</td>
+		</tr>
+		<tr><td class="page-table-main" colspan="2">
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* نام کاربری</td><td class="input-value"><input type="text" ng-model="username" dir="ltr"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* کلمه عبور</td><td class="input-value"><input type="password" ng-model="password" dir="ltr"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* تكرار کلمه عبور</td><td class="input-value"><input type="password" ng-model="repassword" dir="ltr"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* نام</td><td class="input-value"><input type="text" ng-model="firstname" dir="rtl"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* نام خانوادگی</td><td class="input-value"><input type="text" ng-model="lastname" dir="rtl"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">* آدرس ایمیل</td><td class="input-value"><input type="text" ng-model="email" dir="ltr"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">شماره همراه</td><td class="input-value"><input type="text" ng-model="phone" dir="ltr"></td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable"></td><td class="input-value"><table cellpadding="0" cellspacing="0" class="button" ng-click="check_password(username,password)"><tr><td>ورود</td></tr></table></td></tr></table>
+		</td></tr>
+		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+<div id="page6">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+		<tr class="page-table-bar">
+			<td class="page-table-bar-right">لوکابینا<span class="page-table-bar-subtitle">مرجع کنترل امواج مغزی لوکا</span></td>
+			<td class="page-table-bar-left"><a href="javascript:gotopage(1)"><table cellpadding="0" cellspacing="0" class="button"><tr><td>بازگشت</td></tr></table></a></td>
+		</tr>
+		<tr class="page-table-subbar">
+			<td class="page-table-subbar-right">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(4)">ورود</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(4)">{{login_data['name']}}</span>
+			</td>
+			<td class="page-table-subbar-left">
+				<span ng-if="login_data['checklogin']==false" onclick="javascript:gotopage(5)">ثبت نام</span>
+				<span ng-if="login_data['checklogin']==true" onclick="javascript:gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+			</td>
+		</tr>
+		<tr><td class="page-table-main" colspan="2">
+		</td></tr>
+		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+</body>
+</html>
