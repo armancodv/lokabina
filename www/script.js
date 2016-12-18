@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
-	$scope.info_url='http://localhost/lokamed/';
+	$scope.info_url='http://lokabina.com/';
 
 	if(localStorage.getItem('login_code')==null) {
 		localStorage.setItem('username', '');
