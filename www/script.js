@@ -9,35 +9,55 @@ app.controller('myCtrl', function($scope, $http) {
 	$scope.username=localStorage.getItem('username');
 	$scope.login_code=localStorage.getItem('login_code');
 
-	$scope.categories=[{'category':'لطفا صبر کنید ...'}];
+	if(localStorage.getItem("categories")!=null) {
+		$scope.categories=JSON.parse(localStorage.getItem("categories"));
+	} else {
+		$scope.categories=[{'category':'لطفا صبر کنید ...'}];
+	}
 	$http.get($scope.info_url+'json_categories.php')
 		.then(function(response) {
 			$scope.categories = response.data;
+			localStorage.setItem("categories", JSON.stringify($scope.categories));
 		});
 
 	$scope.select_category=function (cat) {
 		$scope.category_selected=cat;
-		$scope.sounds=[{'name':'لطفا صبر کنید ...'}];
+		if(localStorage.getItem("sounds"+cat)!=null) {
+			$scope.sounds=JSON.parse(localStorage.getItem("sounds"+cat));
+		} else {
+			$scope.sounds=[{'name':'لطفا صبر کنید ...'}];
+		}
 		$http.get($scope.info_url+'json_sounds.php?category='+cat)
 			.then(function(response) {
 				$scope.sounds = response.data;
+				localStorage.setItem("sounds"+cat, JSON.stringify($scope.sounds));
 			});
 	}
 
 	$scope.select_sound=function (sound) {
 		$scope.sound_selected=sound;
-		$scope.soundaccess=[];
+		if(localStorage.getItem("soundaccess"+sound)!=null) {
+			$scope.soundaccess=JSON.parse(localStorage.getItem("soundaccess"+sound));
+		} else {
+			$scope.soundaccess=[];
+		}
 		$http.get($scope.info_url+'json_soundaccess.php?id='+sound)
 			.then(function(response) {
 				$scope.soundaccess = response.data;
+				localStorage.setItem("soundaccess"+sound, JSON.stringify($scope.soundaccess));
 			});
 	}
 
 	$scope.check_login=function () {
-		$scope.login_data=[];
+		if(localStorage.getItem("login_data")!=null) {
+			$scope.login_data=JSON.parse(localStorage.getItem("login_data"));
+		} else {
+			$scope.login_data=[];
+		}
 		$http.get($scope.info_url+'json_checklogin.php?username='+$scope.username+'&login_code='+$scope.login_code)
 			.then(function(response) {
 				$scope.login_data = response.data;
+				localStorage.setItem("login_data", JSON.stringify($scope.login_data));
 			});
 	}
 	$scope.check_login();
@@ -46,6 +66,7 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.login_data=[];
 		localStorage.setItem('username', null);
 		localStorage.setItem('login_code', null);
+		localStorage.setItem('login_data', null);
 		$scope.username=null;
 		$scope.login_code=null;
 		$scope.check_login();
@@ -82,19 +103,14 @@ app.controller('myCtrl', function($scope, $http) {
 			});
 	}
 
-	$scope.play_sound=function (sound_url) {
-		audio = new Audio(sound_url);
-		audio.play();
+	$scope.gotopage=function (page_number) {
+		for(i=1;i<=6;i++) {
+			if(i===page_number) {
+				document.getElementById('page'+i).style.display='block';
+			} else {
+				document.getElementById('page'+i).style.display='none';
+			}
+		}
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 	}
 });
-
-function gotopage(page_number) {
-	for(i=1;i<=6;i++) {
-		if(i===page_number) {
-			document.getElementById('page'+i).style.display='block';
-		} else {
-			document.getElementById('page'+i).style.display='none';
-		}
-	}
-	document.body.scrollTop = document.documentElement.scrollTop = 0;
-}
