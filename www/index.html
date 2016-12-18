@@ -7,21 +7,28 @@
 	<link href="style.css" rel="stylesheet" type="text/css"/>
 	<link href="bar-ui.css" rel="stylesheet" type="text/css"/>
 	<script src="angular.js" type="text/javascript"></script>
+	<script src="script.js" type="text/javascript"></script>
 	<script src="soundmanager2.js" type="text/javascript"></script>
 	<script src="bar-ui.js" type="text/javascript"></script>
-	<script src="script.js" type="text/javascript"></script>
 	<script type="text/javascript" src="cordova.js"></script>
+	<script>
+		document.addEventListener("deviceready", onDeviceReady, false);
+		function onDeviceReady() {
+			document.addEventListener("backbutton", function (e) {
+				e.preventDefault();
+				for(i=1;i<=6;i++) {
+					if(i===page_number) {
+						document.getElementById('page'+i).style.display='block';
+					} else {
+						document.getElementById('page'+i).style.display='none';
+					}
+				}
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+			}, false );
+		}
+	</script>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
-<script>
-	document.addEventListener("deviceready", onDeviceReady, false);
-	function onDeviceReady() {
-		document.addEventListener("backbutton", function (e) {
-			e.preventDefault();
-			$scope.gotopage(1);
-		}, false );
-	}
-</script>
 
 <table cellpadding="0" cellspacing="0" class="page-table-bar">
 <tr class="page-table-bar-tr">
@@ -62,7 +69,7 @@
 		<tr><td class="page-table-main" colspan="2">
 			<table cellpadding="0" cellspacing="0" class="sound">
 				<tr><td class="sound-image" style="background-image: url('{{info_url}}template/images/sounds/{{sound_selected}}.png')"></td></tr>
-				<tr ng-if="soundaccess[sound_selected]['access']==true"><td class="sound-player">
+				<tr><td class="sound-player">
 					<div class="sm2-bar-ui flat full-width" dir="ltr" id="sound">
 						<div class="bd sm2-main-controls">
 							<div class="sm2-inline-texture"></div>
@@ -84,9 +91,9 @@
 							<div class="sm2-inline-texture"><div class="sm2-box-shadow"></div></div>
 							<div class="sm2-playlist-wrapper">
 								<ul class="sm2-playlist-bd">
-									<li><a href="{{info_url}}sounds/{{soundaccess[sound_selected]['url']}}">{{sounds[sound_selected]['name']}}</a></li>
-									</ul>
-								</div>
+									<li><a href="{{info_url}}sounds/{{soundaccess[sound_selected]['url']}}" ng-if="soundaccess[sound_selected]['access']==true">{{sounds[sound_selected]['name']}}</a></li>
+								</ul>
+							</div>
 							<div class="sm2-extra-controls">
 								<div class="bd">
 									<div class="sm2-inline-element sm2-button-element"><a href="#prev" title="Previous" class="sm2-inline-button previous">&lt; previous</a></div>
