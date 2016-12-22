@@ -3,7 +3,6 @@
 	<name>لوکابینا</name>
 	<description></description>
 	<author href="http://arman.co.com">armanco</author>
-    <preference name="permissions"    		      value="none" />
 	<preference name="phonegap-version" 		  value="cli-6.3.0" />
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
@@ -30,7 +29,7 @@
 	<gap:splash src="res/screen/android/screen-hdpi-landscape.png"  gap:platform="android" gap:density="hdpi" width="800" height="480" />
 	<gap:splash src="res/screen/android/screen-mdpi-landscape.png"  gap:platform="android" gap:density="mdpi" width="480" height="320" />
 	<gap:splash src="res/screen/android/screen-ldpi-landscape.png"  gap:platform="android" gap:density="ldpi" width="320" height="200" />
-    <gap:config-file platform="android" parent="/manifest">
+    <gap:config-file platform="android" parent="/manifest/application" >
         <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
     </gap:config-file>
 </widget>
