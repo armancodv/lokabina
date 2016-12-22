@@ -1,6 +1,9 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
-	$scope.info_url='http://lokabina.com/';
+	$scope.info_url='http://locabina.com/';
+	$scope.page_back=1;
+	$scope.page_number=1;
+	$scope.display_player='none';
 
 	if(localStorage.getItem('login_code')==null) {
 		localStorage.setItem('username', '');
@@ -35,6 +38,7 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.select_sound=function (sound) {
+		$scope.display_player='none';
 		$scope.sound_selected=sound;
 		if(localStorage.getItem("soundaccess"+sound)!=null) {
 			$scope.soundaccess=JSON.parse(localStorage.getItem("soundaccess"+sound));
@@ -45,6 +49,11 @@ app.controller('myCtrl', function($scope, $http) {
 			.then(function(response) {
 				$scope.soundaccess = response.data;
 				localStorage.setItem("soundaccess"+sound, JSON.stringify($scope.soundaccess));
+				if($scope.soundaccess[$scope.sound_selected]['access']==true) {
+					$scope.display_player='block';
+				} else {
+					$scope.display_player='none';
+				}
 			});
 	}
 
@@ -104,6 +113,12 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.gotopage=function (page_number) {
+		$scope.page_number=page_number;
+		if(page_number==3) {
+			$scope.page_back=2;
+		} else {
+			$scope.page_back=1;
+		}
 		for(i=1;i<=6;i++) {
 			if(i===page_number) {
 				document.getElementById('page'+i).style.display='block';
@@ -112,5 +127,19 @@ app.controller('myCtrl', function($scope, $http) {
 			}
 		}
 		document.body.scrollTop = document.documentElement.scrollTop = 0;
+	}
+
+
+	$scope.call=function () {
+		phonedialer.dial(
+			"*1#",
+			function (err) {
+				if (err == "empty") alert("Unknown phone number");
+				else alert("Dialer Error:" + err);
+			},
+			function (success) {
+				alert('Dialing succeeded');
+			}
+		);
 	}
 });
