@@ -30,7 +30,7 @@
 	<gap:splash src="res/screen/android/screen-hdpi-landscape.png"  gap:platform="android" gap:density="hdpi" width="800" height="480" />
 	<gap:splash src="res/screen/android/screen-mdpi-landscape.png"  gap:platform="android" gap:density="mdpi" width="480" height="320" />
 	<gap:splash src="res/screen/android/screen-ldpi-landscape.png"  gap:platform="android" gap:density="ldpi" width="320" height="200" />
-    <gap:config-file platform="android" parent="/manifest/application" >
+    <gap:config-file platform="android" parent="/manifest" mode="add">
         <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
     </gap:config-file>
 </widget>
