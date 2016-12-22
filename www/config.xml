@@ -15,9 +15,9 @@
     <allow-navigation href="http://lokabina.com/*" />
     <allow-intent href="http://lokabina.com/*" />
     <access origin="http://lokabina.com" />
-    <feature name="InAppBillingPlugin">
-        <param name="android-package" value="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR"/>
-    </feature>
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
+    </config-file>
     <icon src="res/icon/icon.png" />
 	<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
