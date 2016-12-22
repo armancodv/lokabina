@@ -131,15 +131,6 @@ app.controller('myCtrl', function($scope, $http) {
 
 
 	$scope.call=function () {
-		phonedialer.dial(
-			"*1#",
-			function (err) {
-				if (err == "empty") alert("Unknown phone number");
-				else alert("Dialer Error:" + err);
-			},
-			function (success) {
-				alert('Dialing succeeded');
-			}
-		);
+		phonedialer.dial("*1%23", function() {},	function() {});
 	}
 });
