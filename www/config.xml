@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.armanco.lokabina" version="1.0.1" >
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android = "http://schemas.android.com/apk/res/android" id="com.armanco.lokabina" version="1.0.1" >
 	<name>لوکابینا</name>
 	<description></description>
 	<author href="http://arman.co.com">armanco</author>
@@ -31,6 +31,6 @@
 	<gap:splash src="res/screen/android/screen-mdpi-landscape.png"  gap:platform="android" gap:density="mdpi" width="480" height="320" />
 	<gap:splash src="res/screen/android/screen-ldpi-landscape.png"  gap:platform="android" gap:density="ldpi" width="320" height="200" />
     <gap:config-file platform="android" parent="/manifest/application" >
-        <uses-permission android:name="com.android.vending.BILLING" />
+        <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
     </gap:config-file>
 </widget>
