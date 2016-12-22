@@ -147,6 +147,10 @@ function init(){
 	inappbilling.init(successHandler, errorHandler, {showLog:true}, "com.farsitel.bazaar", "ir.cafebazaar.pardakht.InAppBillingService.BIND", "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDDuij6c28GU1vG7ZNtl+44bDALVWH4vCfHqmFOf6OfAbbgw4Y8U2l+kCecWyu3JBG0kTUiXg3pvE9Lpa2YnyOjO5TV52L3pZ6GJxXpIj9owxHqijEMLooG0bb55tdDynNfuN+fHHsghd/BdLrdjYH2iUmYGUehP5Z9C4ImRg2KC3+cNe8Vt4nSIG+2RKG82LZf0u6xAm9bSIXY0D000TY37EUndx93Yu2cSINsSI8CAwEAAQ==");
 }
 
+function init2(){
+	inappbilling.init(successHandler, errorHandler, {showLog:true}, "com.farsitel.bazaar", "ir.cafebazaar.pardakht.InAppBillingService.BIND", "MIHNMewGCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDDuij6c28GU1vG7ZNtl+44bDALVWH4vCfHqmFOf6OfAbbgw4Y8U2l+kCecWyu3JBG0kTUiXg3pvE9Lpa2YnyOjO5TV52L3pZ6GJxXpIj9owxHqijEMLooG0bb55tdDynNfuN+fHHsghd/BdLrdjYH2iUmYGUehP5Z9C4ImRg2KC3+cNe8Vt4nSIG+2RKG82LZf0u6xAm9bSIXY0D000TY37EUndx93Yu2cSINsSI8CAwEAAQ==");
+}
+
 function buy(){
 	inappbilling.buy(successHandler, errorHandler,"gas");
 }
