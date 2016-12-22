@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
-	$scope.info_url='http://locabina.com/';
+	$scope.info_url='http://lokabina.com/';
 	$scope.page_back=1;
 	$scope.page_number=1;
 	$scope.display_player='none';
