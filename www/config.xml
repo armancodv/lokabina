@@ -15,9 +15,9 @@
     <allow-navigation href="http://lokabina.com/*" />
     <allow-intent href="http://lokabina.com/*" />
     <access origin="http://lokabina.com" />
-    <gap:config-file platform="android" parent="/manifest" mode="add">
+    <config-file platform="android" parent="/manifest" mode="add">
         <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
-    </gap:config-file>
+    </config-file>
     <icon src="res/icon/icon.png" />
 	<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
