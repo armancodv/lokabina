@@ -16,6 +16,9 @@
     <allow-intent href="http://lokabina.com/*" />
     <access origin="http://lokabina.com" />
     <access origin="*" />
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="AutoHideSplashScreen" value="false" />
     <icon src="res/icon/icon.png" />
 	<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />

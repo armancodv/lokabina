@@ -139,7 +139,7 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.init = function(){
-		if(localStorage.getItem("products_list")!=null) {
+		if((localStorage.getItem("products_list")!=null)&&(localStorage.getItem("products_list")!='')) {
 			$scope.products_list=JSON.parse(localStorage.getItem("products_list"));
 		} else {
 			$scope.products_list=[{'title':'لطفا صبر کنید ...'}];
@@ -169,7 +169,7 @@ app.controller('myCtrl', function($scope, $http) {
 
 	$scope.success_products = function(result) {
 		$scope.products_list=result;
-		if($scope.products_list!=null) {
+		if($scope.products_list!='') {
 			localStorage.setItem("products_list", JSON.stringify($scope.products_list));
 		}
 	}
