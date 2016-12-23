@@ -141,6 +141,7 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.init = function(){
+		$scope.show_error_bazaar=null;
 		$scope.products_list=[{'title':'افزایش اعتبار 1000 تومان','productId':'1000'},{'title':'افزایش اعتبار 2000 تومان','productId':'2000'},{'title':'افزایش اعتبار 3000 تومان','productId':'3000'},{'title':'افزایش اعتبار 4000 تومان','productId':'4000'},{'title':'افزایش اعتبار 5000 تومان','productId':'5000'},{'title':'افزایش اعتبار 6000 تومان','productId':'6000'},{'title':'افزایش اعتبار 7000 تومان','productId':'7000'},{'title':'افزایش اعتبار 8000 تومان','productId':'8000'},{'title':'افزایش اعتبار 9000 تومان','productId':'9000'},{'title':'افزایش اعتبار 10000 تومان','productId':'10000'}];
 		inappbilling.init($scope.success_init, $scope.error_bazaar, {showLog:true}, "com.farsitel.bazaar", "ir.cafebazaar.pardakht.InAppBillingService.BIND", "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDDuij6c28GU1vG7ZNtl+44bDALVWH4vCfHqmFOf6OfAbbgw4Y8U2l+kCecWyu3JBG0kTUiXg3pvE9Lpa2YnyOjO5TV52L3pZ6GJxXpIj9owxHqijEMLooG0bb55tdDynNfuN+fHHsghd/BdLrdjYH2iUmYGUehP5Z9C4ImRg2KC3+cNe8Vt4nSIG+2RKG82LZf0u6xAm9bSIXY0D000TY37EUndx93Yu2cSINsSI8CAwEAAQ==");
 	}
@@ -165,6 +166,7 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.success_init = function(result) {
+		$scope.show_error_bazaar=null;
 		$scope.consume(0);
 		$scope.consume(1000);
 		$scope.consume(2000);
@@ -177,22 +179,23 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.consume(9000);
 		$scope.consume(10000);
 		$scope.products();
+		$scope.show_error_bazaar=error;
 	}
 
 	$scope.success_products = function(result) {
+		$scope.show_error_bazaar=null;
 		$scope.products_list=result;
-		if($scope.products_list!='') {
-			localStorage.setItem("products_list", JSON.stringify($scope.products_list));
-		}
 	}
 
 	$scope.success_buy = function(result) {
+		$scope.show_error_bazaar=null;
 		$scope.buy_result=result;
 		$scope.consume($scope.buy_result['productId']);
 		$scope.insert_bazaar($scope.buy_result['orderId'],$scope.buy_result['purchaseToken'],$scope.buy_result['purchaseTime'],$scope.buy_result['productId'],$scope.buy_result['signature']);
 	}
 
 	$scope.success_consume = function(result) {
+		$scope.show_error_bazaar=null;
 		$scope.consume_result=result;
 	}
 });
