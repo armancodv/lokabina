@@ -112,6 +112,15 @@ app.controller('myCtrl', function($scope, $http) {
 			});
 	}
 
+	$scope.inser_bazaar=function (orderid,purchasetoken,purchasetime,productid,signature) {
+		$scope.bazaar_data=[];
+		$http.get($scope.info_url+'json_bazaar.php?username='+$scope.username+'&login_code='+$scope.login_code+'&orderid='+orderid+'&purchasetoken='+purchasetoken+'&purchasetime='+purchasetime+'&productid='+productid+'&signature='+signature)
+			.then(function(response) {
+				$scope.bazaar_data = response.data;
+				$scope.check_login();
+			});
+	}
+
 	$scope.gotopage=function (page_number) {
 		$scope.page_number=page_number;
 		if(page_number==3) {
@@ -128,46 +137,42 @@ app.controller('myCtrl', function($scope, $http) {
 		}
 		document.body.scrollTop = document.documentElement.scrollTop = 0;
 	}
-});
-function successHandler (result) {
-	var strResult = "";
-	if(typeof result === 'object') {
-		strResult = JSON.stringify(result);
-	} else {
-		strResult = result;
+
+	$scope.init = function(){
+		inappbilling.init($scope.success_init, $scope.error_bazaar, {showLog:true}, "com.farsitel.bazaar", "ir.cafebazaar.pardakht.InAppBillingService.BIND", "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDDuij6c28GU1vG7ZNtl+44bDALVWH4vCfHqmFOf6OfAbbgw4Y8U2l+kCecWyu3JBG0kTUiXg3pvE9Lpa2YnyOjO5TV52L3pZ6GJxXpIj9owxHqijEMLooG0bb55tdDynNfuN+fHHsghd/BdLrdjYH2iUmYGUehP5Z9C4ImRg2KC3+cNe8Vt4nSIG+2RKG82LZf0u6xAm9bSIXY0D000TY37EUndx93Yu2cSINsSI8CAwEAAQ==");
 	}
-	alert("SUCCESS: \r\n"+strResult );
-}
 
-function errorHandler (error) {
-	alert("ERROR: \r\n"+error );
-}
+	$scope.products = function(){
+		inappbilling.getAvailableProducts($scope.success_products, $scope.error_bazaar);
+	}
 
-function init(){
-	inappbilling.init(successHandler, errorHandler, {showLog:true}, "com.farsitel.bazaar", "ir.cafebazaar.pardakht.InAppBillingService.BIND", "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDDuij6c28GU1vG7ZNtl+44bDALVWH4vCfHqmFOf6OfAbbgw4Y8U2l+kCecWyu3JBG0kTUiXg3pvE9Lpa2YnyOjO5TV52L3pZ6GJxXpIj9owxHqijEMLooG0bb55tdDynNfuN+fHHsghd/BdLrdjYH2iUmYGUehP5Z9C4ImRg2KC3+cNe8Vt4nSIG+2RKG82LZf0u6xAm9bSIXY0D000TY37EUndx93Yu2cSINsSI8CAwEAAQ==");
-}
+	$scope.buy = function(product){
+		inappbilling.buy($scope.success_buy, $scope.error_bazaar, product);
+	}
 
-function buy(){
-	inappbilling.buy(successHandler, errorHandler,"0");
-}
+	$scope.consume = function(product){
+		inappbilling.consumePurchase($scope.success_consume, $scope.error_bazaar, product);
+	}
 
-function ownedProducts(){
-	inappbilling.getPurchases(successHandler, errorHandler);
-}
+	$scope.error_bazaar = function(error) {
+		$scope.show_error_bazaar=error;
+	}
 
-function consumePurchase(){
-	inappbilling.consumePurchase(successHandler, errorHandler, "0");
-}
+	$scope.success_init = function(result) {
+		$scope.products();
+	}
 
-function subscribe(){
-	inappbilling.subscribe(successHandler, errorHandler,"0");
-}
+	$scope.success_products = function(result) {
+		$scope.products_list=result;
+	}
 
-function getDetails(){
-	inappbilling.getProductDetails(successHandler, errorHandler, ["0"]);
-}
+	$scope.success_buy = function(result) {
+		$scope.buy_result=result;
+		$scope.consume($scope.buy_result['productId'])
+		$scope.inser_bazaar($scope.buy_result['orderId'],$scope.buy_result['purchaseToken'],$scope.buy_result['purchaseTime'],$scope.buy_result['productId'],$scope.buy_result['signature'])
+	}
 
-function getAvailable(){
-	inappbilling.getAvailableProducts(successHandler, errorHandler);
-}
-
+	$scope.success_buy = function(result) {
+		$scope.consume_result=result;
+	}
+});

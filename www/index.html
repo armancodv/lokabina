@@ -42,7 +42,7 @@
 	</td>
 	<td class="page-table-subbar-left">
 		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(5)">ثبت نام</span>
-		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(6)">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(6);init()">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
 	</td>
 </tr>
 </table>
@@ -108,7 +108,7 @@
 					<span class="sound-time">{{sounds[sound_selected]['time']}} دقیقه</span><br>
 					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==false)"><table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(4)"><tr><td>ورود</td></tr></table></div>
 					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])>=sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="purchase(sound_selected)"><tr><td>خرید</td></tr></table></div>
-					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])<sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(6)"><tr><td>افزایش اعتبار</td></tr></table></div>
+					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])<sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(6);init()"><tr><td>افزایش اعتبار</td></tr></table></div>
 					<br><span class="sound-cost">{{sounds[sound_selected]['cost']}} تومان</span><br>
 					<span class="sound-description">{{sounds[sound_selected]['description']}}</span>
 				</td></tr>
@@ -156,13 +156,7 @@
 <div id="page6">
 	<table cellpadding="0" cellspacing="0" class="page-table">
 		<tr><td class="page-table-main" colspan="2">
-			<button onclick="init();">Initalize the billing plugin</button>
-			<button onclick="buy();">Purchase</button>
-			<button onclick="ownedProducts();">Owned products</button>
-			<button onclick="consumePurchase();">Consume purchase</button>
-			<button onclick="subscribe();">Subscribe</button>
-			<button onclick="getDetails();">Query Details</button>
-			<button onclick="getAvailable();">Get Available Products</button>
+			<table ng-repeat="(p_key, p_value) in products_list" ng-click="buy(p_value['productId'])" cellpadding="0" cellspacing="0" class="property2"><tr><td class="property2-name">{{p_value['title']}}</td></tr></table>
 		</td></tr>
 		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>
