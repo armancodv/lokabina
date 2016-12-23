@@ -160,19 +160,23 @@ app.controller('myCtrl', function($scope, $http) {
 
 	$scope.success_init = function(result) {
 		$scope.products();
+		alert('init');
 	}
 
 	$scope.success_products = function(result) {
 		$scope.products_list=result;
+		alert('products');
 	}
 
 	$scope.success_buy = function(result) {
 		$scope.buy_result=result;
 		$scope.consume($scope.buy_result['productId']);
 		$scope.insert_bazaar($scope.buy_result['orderId'],$scope.buy_result['purchaseToken'],$scope.buy_result['purchaseTime'],$scope.buy_result['productId'],$scope.buy_result['signature']);
+		alert('buy');
 	}
 
 	$scope.success_consume = function(result) {
 		$scope.consume_result=result;
+		alert('consume');
 	}
 });
