@@ -158,12 +158,14 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.consume = function(product){
+		inappbilling.consumePurchase($scope.success_consume, $scope.error_bazaar_em, product);
 	}
 
 	$scope.error_bazaar = function(error) {
 		$scope.show_error_bazaar=error;
 	}
 
+	$scope.error_bazaar_em = function(error) {
 	}
 
 	$scope.success_init = function(result) {
