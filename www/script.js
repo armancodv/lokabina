@@ -45,7 +45,7 @@ app.controller('myCtrl', function($scope, $http) {
 		} else {
 			$scope.soundaccess=[];
 		}
-		$http.get($scope.info_url+'json_soundaccess.php?id='+sound)
+		$http.get($scope.info_url+'json_soundaccess.php?username='+$scope.username+'&login_code='+$scope.login_code+'&id='+sound)
 			.then(function(response) {
 				$scope.soundaccess = response.data;
 				localStorage.setItem("soundaccess"+sound, JSON.stringify($scope.soundaccess));
