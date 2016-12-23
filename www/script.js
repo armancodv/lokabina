@@ -128,15 +128,16 @@ app.controller('myCtrl', function($scope, $http) {
 		} else {
 			$scope.page_back=1;
 		}
-		if((page_number==1)||((page_number==2)&&($scope.category_selected!=0))||((page_number==3)&&($scope.sound_selected!=0))||(page_number==4)||(page_number==5)||(page_number==6))
-		for(i=1;i<=6;i++) {
-			if(i===page_number) {
-				document.getElementById('page'+i).style.display='block';
-			} else {
-				document.getElementById('page'+i).style.display='none';
+		if((page_number==1)||((page_number==2)&&($scope.category_selected!=0))||((page_number==3)&&($scope.sound_selected!=0))||(page_number==4)||(page_number==5)||(page_number==6)) {
+			for (i = 1; i <= 6; i++) {
+				if (i === page_number) {
+					document.getElementById('page' + i).style.display = 'block';
+				} else {
+					document.getElementById('page' + i).style.display = 'none';
+				}
 			}
+			document.body.scrollTop = document.documentElement.scrollTop = 0;
 		}
-		document.body.scrollTop = document.documentElement.scrollTop = 0;
 	}
 
 	$scope.init = function(){
