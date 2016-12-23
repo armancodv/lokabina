@@ -100,6 +100,7 @@ app.controller('myCtrl', function($scope, $http) {
 			.then(function(response) {
 				$scope.purchase_data = response.data;
 				$scope.select_sound(sound);
+				$scope.check_login();
 			});
 	}
 
