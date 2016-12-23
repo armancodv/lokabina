@@ -112,13 +112,15 @@ app.controller('myCtrl', function($scope, $http) {
 			});
 	}
 
-	$scope.inser_bazaar=function (orderid,purchasetoken,purchasetime,productid,signature) {
+	$scope.insert_bazaar=function (orderid,purchasetoken,purchasetime,productid,signature) {
 		$scope.bazaar_data=[];
 		$http.get($scope.info_url+'json_bazaar.php?username='+$scope.username+'&login_code='+$scope.login_code+'&orderid='+encodeURIComponent(orderid)+'&purchasetoken='+encodeURIComponent(purchasetoken)+'&purchasetime='+encodeURIComponent(purchasetime)+'&productid='+encodeURIComponent(productid)+'&signature='+encodeURIComponent(signature))
 			.then(function(response) {
 				$scope.bazaar_data = response.data;
 				$scope.check_login();
+				alert('buy2');
 			});
+		alert($scope.info_url+'json_bazaar.php?username='+$scope.username+'&login_code='+$scope.login_code+'&orderid='+encodeURIComponent(orderid)+'&purchasetoken='+encodeURIComponent(purchasetoken)+'&purchasetime='+encodeURIComponent(purchasetime)+'&productid='+encodeURIComponent(productid)+'&signature='+encodeURIComponent(signature));
 	}
 
 	$scope.gotopage=function (page_number) {
@@ -169,7 +171,7 @@ app.controller('myCtrl', function($scope, $http) {
 	$scope.success_buy = function(result) {
 		$scope.buy_result=result;
 		$scope.consume($scope.buy_result['productId']);
-		$scope.inser_bazaar($scope.buy_result['orderId'],$scope.buy_result['purchaseToken'],$scope.buy_result['purchaseTime'],$scope.buy_result['productId'],$scope.buy_result['signature']);
+		$scope.insert_bazaar($scope.buy_result['orderId'],$scope.buy_result['purchaseToken'],$scope.buy_result['purchaseTime'],$scope.buy_result['productId'],$scope.buy_result['signature']);
 		alert('buy');
 	}
 
