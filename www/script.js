@@ -128,14 +128,14 @@ app.controller('myCtrl', function($scope, $http) {
 		} else {
 			$scope.page_back=1;
 		}
-			for (i = 1; i <= 6; i++) {
-				if (i === page_number) {
-					document.getElementById('page' + i).style.display = 'block';
-				} else {
-					document.getElementById('page' + i).style.display = 'none';
-				}
+		for(i=1;i<=6;i++) {
+			if(i===page_number) {
+				document.getElementById('page'+i).style.display='block';
+			} else {
+				document.getElementById('page'+i).style.display='none';
 			}
-			document.body.scrollTop = document.documentElement.scrollTop = 0;
+		}
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 	}
 
 	$scope.init = function(){
@@ -167,11 +167,6 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.success_init = function(result) {
-		if((localStorage.getItem("products_list")!=null)&&(localStorage.getItem("products_list")!='[]')) {
-			$scope.products_list=JSON.parse(localStorage.getItem("products_list"));
-		} else {
-			$scope.products_list=[{'title':'افزایش اعتبار 1000 تومان','productId':'1000'},{'title':'افزایش اعتبار 2000 تومان','productId':'2000'},{'title':'افزایش اعتبار 3000 تومان','productId':'3000'},{'title':'افزایش اعتبار 4000 تومان','productId':'4000'},{'title':'افزایش اعتبار 5000 تومان','productId':'5000'},{'title':'افزایش اعتبار 6000 تومان','productId':'6000'},{'title':'افزایش اعتبار 7000 تومان','productId':'7000'},{'title':'افزایش اعتبار 8000 تومان','productId':'8000'},{'title':'افزایش اعتبار 9000 تومان','productId':'9000'},{'title':'افزایش اعتبار 10000 تومان','productId':'10000'}];
-		}
 		$scope.consume(0);
 		$scope.consume(1000);
 		$scope.consume(2000);
