@@ -114,7 +114,7 @@ app.controller('myCtrl', function($scope, $http) {
 
 	$scope.insert_bazaar=function (orderid,purchasetoken,purchasetime,productid,signature) {
 		$scope.bazaar_data=[];
-		$http.get($scope.info_url+'json_bazaar.php?username='+$scope.username+'&login_code='+$scope.login_code+'&orderid='+encodeURIComponent(orderid)+'&purchasetoken='+encodeURIComponent(purchasetoken)+'&purchasetime='+encodeURIComponent(purchasetime)+'&productid='+encodeURIComponent(productid)+'&signature='+encodeURIComponent(signature))
+		$http.get($scope.info_url+'json_bazaar.php?username='+$scope.username+'&login_code='+$scope.login_code+'&orderid='+orderid+'&purchasetoken='+purchasetoken+'&purchasetime='+purchasetime+'&productid='+productid+'&signature='+signature)
 			.then(function(response) {
 				$scope.bazaar_data = response.data;
 				$scope.check_login();
