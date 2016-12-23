@@ -139,7 +139,7 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.init = function(){
-		if((localStorage.getItem("products_list")!=null)&&(localStorage.getItem("products_list")!='')) {
+		if((localStorage.getItem("products_list")!=null)&&(localStorage.getItem("products_list")!='[]')) {
 			$scope.products_list=JSON.parse(localStorage.getItem("products_list"));
 		} else {
 			$scope.products_list=[{'title':'لطفا صبر کنید ...'}];
@@ -164,6 +164,17 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.success_init = function(result) {
+		$scope.consume(0);
+		$scope.consume(1000);
+		$scope.consume(2000);
+		$scope.consume(3000);
+		$scope.consume(4000);
+		$scope.consume(5000);
+		$scope.consume(6000);
+		$scope.consume(7000);
+		$scope.consume(8000);
+		$scope.consume(9000);
+		$scope.consume(10000);
 		$scope.products();
 	}
 
