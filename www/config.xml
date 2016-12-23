@@ -27,14 +27,14 @@
     <preference name="SplashScreenDelay" value="10000" />
     <preference name="AutoHideSplashScreen" value="false" />
     <splash src="res/screen/android/screen-hdpi-portrait.png" />
-    <gap:splash src="res/screen/android/screen-ldpi-portrait.png"  gap:platform="android" gap:density="port-ldpi" />
-    <gap:splash src="res/screen/android/screen-mdpi-portrait.png"  gap:platform="android" gap:density="port-mdpi" />
-    <gap:splash src="res/screen/android/screen-hdpi-portrait.png"  gap:platform="android" gap:density="port-hdpi" />
-    <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="port-xhdpi" />
-	<gap:splash src="res/screen/android/screen-xhdpi-landscape.png" gap:platform="android" gap:density="land-xhdpi" />
-	<gap:splash src="res/screen/android/screen-hdpi-landscape.png"  gap:platform="android" gap:density="land-hdpi" />
-	<gap:splash src="res/screen/android/screen-mdpi-landscape.png"  gap:platform="android" gap:density="land-mdpi" />
-	<gap:splash src="res/screen/android/screen-ldpi-landscape.png"  gap:platform="android" gap:density="land-ldpi" />
+    <splash src="res/screen/android/screen-ldpi-portrait.png"  platform="android" qualifier="port-ldpi" />
+    <splash src="res/screen/android/screen-mdpi-portrait.png"  platform="android" qualifier="port-mdpi" />
+    <splash src="res/screen/android/screen-hdpi-portrait.png"  platform="android" qualifier="port-hdpi" />
+    <splash src="res/screen/android/screen-xhdpi-portrait.png" platform="android" qualifier="port-xhdpi" />
+	<splash src="res/screen/android/screen-xhdpi-landscape.png" platform="android" qualifier="land-xhdpi" />
+	<splash src="res/screen/android/screen-hdpi-landscape.png"  platform="android" qualifier="land-hdpi" />
+	<splash src="res/screen/android/screen-mdpi-landscape.png"  platform="android" qualifier="land-mdpi" />
+	<splash src="res/screen/android/screen-ldpi-landscape.png"  platform="android" qualifier="land-ldpi" />
     <gap:config-file platform="android" parent="/manifest" mode="add">
         <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
     </gap:config-file>
