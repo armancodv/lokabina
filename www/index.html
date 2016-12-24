@@ -171,7 +171,7 @@
 <div id="page7">
 	<table cellpadding="0" cellspacing="0" class="page-table">
 		<tr><td class="page-table-main" colspan="2">
-			<table ng-repeat="(p_key, p_value) in mysounds" ng-click="select_sound(p_key);gotopage(3);" cellpadding="0" cellspacing="0" class="property2"><tr><td class="property2-thumb-td"><div class="property2-thumb" style="background-image: url('{{info_url}}template/images/sounds/{{p_key}}.png')"></div></td><td class="property2-name">{{p_value['name']}}<p class="property2-description">{{p_value['description']}}</p></td></tr></table>
+			<table ng-repeat="(p_key, p_value) in sounds" ng-click="select_sound(p_key);gotopage(3);" cellpadding="0" cellspacing="0" class="property2"><tr><td class="property2-thumb-td"><div class="property2-thumb" style="background-image: url('{{info_url}}template/images/sounds/{{p_key}}.png')"></div></td><td class="property2-name">{{p_value['name']}}<p class="property2-description">{{p_value['description']}}</p></td></tr></table>
 		</td></tr>
 		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>
