@@ -27,15 +27,7 @@
     <preference name="SplashScreen" value="splash" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <splash src="res/screen/android/screen-hdpi-portrait.png" />
-    <splash src="res/screen/android/screen-ldpi-portrait.png"  platform="android" density="port-ldpi" />
-    <splash src="res/screen/android/screen-mdpi-portrait.png"  platform="android" density="port-mdpi" />
-    <splash src="res/screen/android/screen-hdpi-portrait.png"  platform="android" density="port-hdpi" />
-    <splash src="res/screen/android/screen-xhdpi-portrait.png" platform="android" density="port-xhdpi" />
-	<splash src="res/screen/android/screen-xhdpi-landscape.png" platform="android" density="land-xhdpi" />
-	<splash src="res/screen/android/screen-hdpi-landscape.png"  platform="android" density="land-hdpi" />
-	<splash src="res/screen/android/screen-mdpi-landscape.png"  platform="android" density="land-mdpi" />
-	<splash src="res/screen/android/screen-ldpi-landscape.png"  platform="android" density="land-ldpi" />
+    <splash src="res/screen/android/screen.png" />
     <gap:config-file platform="android" parent="/manifest" mode="add">
         <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
     </gap:config-file>
