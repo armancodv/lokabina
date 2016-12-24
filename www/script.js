@@ -38,15 +38,16 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 
 	$scope.select_mysounds=function () {
-		if(localStorage.getItem("mysounds")!=null) {
-			$scope.sounds=JSON.parse(localStorage.getItem("mysounds"));
+		$scope.category_selected=0;
+		if(localStorage.getItem("sounds"+$scope.category_selected)!=null) {
+			$scope.sounds=JSON.parse(localStorage.getItem("sounds"+$scope.category_selected));
 		} else {
 			$scope.sounds=[{'name':'لطفا صبر کنید ...'}];
 		}
 		$http.get($scope.info_url+'json_mysounds.php?username='+$scope.username+'&login_code='+$scope.login_code)
 			.then(function(response) {
 				$scope.sounds = response.data;
-				localStorage.setItem("mysounds", JSON.stringify($scope.sounds));
+				localStorage.setItem("sounds"+$scope.category_selected, JSON.stringify($scope.sounds));
 			});
 	}
 
