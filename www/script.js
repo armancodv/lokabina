@@ -37,6 +37,19 @@ app.controller('myCtrl', function($scope, $http) {
 			});
 	}
 
+	$scope.select_mysounds=function () {
+		if(localStorage.getItem("mysounds")!=null) {
+			$scope.mysounds=JSON.parse(localStorage.getItem("mysounds"));
+		} else {
+			$scope.mysounds=[{'name':'لطفا صبر کنید ...'}];
+		}
+		$http.get($scope.info_url+'json_mysounds.php?username='+$scope.username+'&login_code='+$scope.login_code)
+			.then(function(response) {
+				$scope.mysounds = response.data;
+				localStorage.setItem("mysounds", JSON.stringify($scope.sounds));
+			});
+	}
+
 	$scope.select_sound=function (sound) {
 		$scope.display_player='none';
 		$scope.sound_selected=sound;
@@ -129,8 +142,8 @@ app.controller('myCtrl', function($scope, $http) {
 		} else {
 			$scope.page_back=1;
 		}
-		if((page_number==1)||((page_number==2)&&($scope.category_selected!=0))||((page_number==3)&&($scope.sound_selected!=0))||(page_number==4)||(page_number==5)||(page_number==6)) {
-			for (i = 1; i <= 6; i++) {
+		if((page_number==1)||((page_number==2)&&($scope.category_selected!=0))||((page_number==3)&&($scope.sound_selected!=0))||(page_number==4)||(page_number==5)||(page_number==6)||(page_number==7)) {
+			for (i = 1; i <= 7; i++) {
 				if (i === page_number) {
 					document.getElementById('page' + i).style.display = 'block';
 				} else {

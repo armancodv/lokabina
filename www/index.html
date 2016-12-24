@@ -16,7 +16,7 @@
 		function onDeviceReady() {
 			document.addEventListener("backbutton", function (e) {
 				e.preventDefault();
-				for(i=1;i<=6;i++) {
+				for(i=1;i<=7;i++) {
 					if(i===1) {
 						document.getElementById('page'+i).style.display='block';
 					} else {
@@ -37,12 +37,12 @@
 </tr>
 <tr class="page-table-subbar">
 	<td class="page-table-subbar-right">
-		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(4)">ورود</span>
-		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(4)">{{login_data['name']}}</span>
+		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(4)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">ورود</span>
+		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(4)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">{{login_data['name']}}</span>
 	</td>
 	<td class="page-table-subbar-left">
-		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(5)">ثبت نام</span>
-		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(6);init()">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(5)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">ثبت نام</span>
+		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(6);init()" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
 	</td>
 </tr>
 </table>
@@ -127,7 +127,11 @@
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable"></td><td class="input-value"><table cellpadding="0" cellspacing="0" class="button" ng-click="check_password(username2,password)"><tr><td>ورود</td></tr></table></td></tr></table>
 		</td></tr>
 		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']==true">
+			<p style="padding: 8px"><b>نام: </b>{{login_data['name']}}</p>
+			<p style="padding: 8px"><b>اعتبار: </b>{{login_data['credit']}} تومان</p>
+			<p style="padding: 8px"><b>کوپن تخفیف: </b>{{login_data['coupon']}} تومان</p>
 			<table cellpadding="0" cellspacing="0" class="button" ng-click="insert_logout()"><tr><td>خروج</td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(7);select_mysounds();"><tr><td>فایل های صوتی من</td></tr></table>
 		</td></tr>
 		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>
@@ -159,6 +163,15 @@
 			<p ng-if="show_error_bazaar!=null" class="error">{{show_error_bazaar}}</p>
 			<table ng-repeat="(p_key, p_value) in products_list" ng-click="buy(p_value['productId'])" cellpadding="0" cellspacing="0" class="property2"><tr><td class="property2-name">{{p_value['title']}}</td></tr></table>
 			<div style="margin: auto;text-align: center; padding: 5px"><img src="images/cafe-bazaar.jpg" height="60"></div>
+		</td></tr>
+		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+<div id="page7">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+		<tr><td class="page-table-main" colspan="2">
+			<table ng-repeat="(p_key, p_value) in mysounds" ng-click="select_sound(p_key);gotopage(3);" cellpadding="0" cellspacing="0" class="property2"><tr><td class="property2-thumb-td"><div class="property2-thumb" style="background-image: url('{{info_url}}template/images/sounds/{{p_key}}.png')"></div></td><td class="property2-name">{{p_value['name']}}<p class="property2-description">{{p_value['description']}}</p></td></tr></table>
 		</td></tr>
 		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>

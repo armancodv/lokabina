@@ -396,6 +396,7 @@ input[type=submit] {
 	float:left;
 	margin:5px;
 	padding:0px 10px 0px 10px;
+	border-radius: 40px;
 	color:#ffffff;
 	text-align:center;
 	font-weight:normal;
@@ -406,7 +407,7 @@ input[type=submit] {
 	background-color:#38102a;
 }
 
-#page2,#page3,#page4,#page5,#page6 {
+#page2,#page3,#page4,#page5,#page6,#page7 {
 	display:none;
 }
 
