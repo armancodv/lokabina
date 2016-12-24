@@ -42,7 +42,7 @@
 	</td>
 	<td class="page-table-subbar-left">
 		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(5)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">ثبت نام</span>
-		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(6);init()" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">اعتبار شما: {{login_data['credit']}} تومان ({{login_data['coupon']}} کوپن تخفیف)</span>
+		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(6);init()" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">اعتبار شما: {{login_data['credit']}} تومان</span>
 	</td>
 </tr>
 </table>
@@ -129,7 +129,7 @@
 		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']==true">
 			<p style="padding: 8px"><b>نام: </b>{{login_data['name']}}</p>
 			<p style="padding: 8px"><b>اعتبار: </b>{{login_data['credit']}} تومان</p>
-			<p style="padding: 8px"><b>کوپن تخفیف: </b>{{login_data['coupon']}} تومان</p>
+			<p style="padding: 8px"><b>کوپن تخفیف: </b>{{login_data['coupon']}} تومان<span ng-if="login_data['coupon']!=0"> - معتبر تا تاریخ {{login_data['coupon_date']}}</span></p>
 			<table cellpadding="0" cellspacing="0" class="button" ng-click="insert_logout()"><tr><td>خروج</td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(7);select_mysounds();"><tr><td>فایل های صوتی من</td></tr></table>
 		</td></tr>

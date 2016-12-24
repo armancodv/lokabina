@@ -39,13 +39,13 @@ app.controller('myCtrl', function($scope, $http) {
 
 	$scope.select_mysounds=function () {
 		if(localStorage.getItem("mysounds")!=null) {
-			$scope.mysounds=JSON.parse(localStorage.getItem("mysounds"));
+			$scope.sounds=JSON.parse(localStorage.getItem("mysounds"));
 		} else {
-			$scope.mysounds=[{'name':'لطفا صبر کنید ...'}];
+			$scope.sounds=[{'name':'لطفا صبر کنید ...'}];
 		}
 		$http.get($scope.info_url+'json_mysounds.php?username='+$scope.username+'&login_code='+$scope.login_code)
 			.then(function(response) {
-				$scope.mysounds = response.data;
+				$scope.sounds = response.data;
 				localStorage.setItem("mysounds", JSON.stringify($scope.sounds));
 			});
 	}
