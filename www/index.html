@@ -131,7 +131,7 @@
 			<p style="padding: 8px"><b>اعتبار: </b>{{login_data['credit']}} تومان</p>
 			<p style="padding: 8px"><b>کوپن تخفیف: </b>{{login_data['coupon']}} تومان<span ng-if="login_data['coupon']!=0"> - معتبر تا تاریخ {{login_data['coupon_date']}}</span></p>
 			<table cellpadding="0" cellspacing="0" class="button" ng-click="insert_logout()"><tr><td>خروج</td></tr></table>
-			<table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(7);select_mysounds();"><tr><td>فایل های صوتی من</td></tr></table>
+			<table cellpadding="0" cellspacing="0" class="button" ng-click="select_mysounds();gotopage(7);"><tr><td>فایل های صوتی من</td></tr></table>
 		</td></tr>
 		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>
