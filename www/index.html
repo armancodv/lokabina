@@ -16,7 +16,7 @@
 		function onDeviceReady() {
 			document.addEventListener("backbutton", function (e) {
 				e.preventDefault();
-				for(i=1;i<=7;i++) {
+				for(i=1;i<=8;i++) {
 					if(i===1) {
 						document.getElementById('page'+i).style.display='block';
 					} else {
@@ -50,6 +50,7 @@
 	<table cellpadding="0" cellspacing="0" class="page-table">
 	<tr><td class="page-table-main" colspan="2">
 		<table ng-repeat="(p_key, p_value) in categories" ng-click="select_category(p_key);gotopage(2);" cellpadding="0" cellspacing="0" class="property2"><tr><td class="property2-thumb-td"><div class="property2-thumb" style="background-image: url('{{info_url}}template/images/categories/{{p_key}}.jpg')"></div></td><td class="property2-name">{{p_value['category']}}</td></tr></table>
+		<table ng-click="gotopage(8);" cellpadding="0" cellspacing="0" class="property"><tr><td class="property2-thumb-td"><div class="property2-thumb" style="background-image: url('images/about.jpg')"></div></td><td class="property-name">درباره برنامه ...</td></tr></table>
 	</td></tr>
 	<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>
@@ -110,7 +111,41 @@
 					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])>=sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="purchase(sound_selected)"><tr><td>خرید</td></tr></table></div>
 					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])<sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(6);init()"><tr><td>افزایش اعتبار</td></tr></table></div>
 					<br><span class="sound-cost">{{sounds[sound_selected]['cost']}} تومان</span><br>
+					<span class="error" style="display: {{display_player}}">از هدفون استفاده نمایید.<br></span>
 					<span class="sound-description">{{sounds[sound_selected]['description']}}</span>
+					<div class="sm2-bar-ui flat full-width" dir="ltr" id="sound2" style="display: {{display_player}}">
+						<div class="bd sm2-main-controls">
+							<div class="sm2-inline-texture"></div>
+							<div class="sm2-inline-gradient"></div>
+							<div class="sm2-inline-element sm2-button-element"><div class="sm2-button-bd"><a href="#play" class="sm2-inline-button play-pause">Play / pause</a></div></div>
+							<div class="sm2-inline-element sm2-inline-status">
+								<div class="sm2-playlist"><div class="sm2-playlist-target"><noscript><p>JavaScript is required.</p></noscript></div></div>
+								<div class="sm2-progress">
+									<div class="sm2-row">
+										<div class="sm2-inline-time">0:00</div>
+										<div class="sm2-progress-bd"><div class="sm2-progress-track"><div class="sm2-progress-bar"></div><div class="sm2-progress-ball"><div class="icon-overlay"></div></div></div></div>
+										<div class="sm2-inline-duration">0:00</div>
+									</div>
+								</div>
+							</div>
+							<div class="sm2-inline-element sm2-button-element sm2-volume"><div class="sm2-button-bd"><span class="sm2-inline-button sm2-volume-control volume-shade"></span><a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a></div></div>
+							<div class="sm2-inline-element sm2-button-element"><div class="sm2-button-bd"><a href="#repeat" title="Repeat playlist" class="sm2-inline-button repeat">&infin; repeat</a></div></div>
+						</div>
+						<div class="bd sm2-playlist-drawer sm2-element">
+							<div class="sm2-inline-texture"><div class="sm2-box-shadow"></div></div>
+							<div class="sm2-playlist-wrapper">
+								<ul class="sm2-playlist-bd">
+									<li><a href="backgrounds/544.mp3">پس زمینه</a></li>
+								</ul>
+							</div>
+							<div class="sm2-extra-controls">
+								<div class="bd">
+									<div class="sm2-inline-element sm2-button-element"><a href="#prev" title="Previous" class="sm2-inline-button previous">&lt; previous</a></div>
+									<div class="sm2-inline-element sm2-button-element"><a href="#next" title="Next" class="sm2-inline-button next">&gt; next</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</td></tr>
 			</table>
 		</td></tr>
@@ -172,6 +207,24 @@
 	<table cellpadding="0" cellspacing="0" class="page-table">
 		<tr><td class="page-table-main" colspan="2">
 			<table ng-repeat="(p_key, p_value) in sounds" ng-click="select_sound(p_key);gotopage(3);" cellpadding="0" cellspacing="0" class="property2"><tr><td class="property2-thumb-td"><div class="property2-thumb" style="background-image: url('{{info_url}}template/images/sounds/{{p_key}}.png')"></div></td><td class="property2-name">{{p_value['name']}}<p class="property2-description">{{p_value['description']}}</p></td></tr></table>
+		</td></tr>
+		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
+	</table>
+</div>
+
+<div id="page8">
+	<table cellpadding="0" cellspacing="0" class="page-table">
+		<tr><td class="page-table-main" colspan="2" style="padding:10px;">
+			<b>تكنولوژي ضربانهاي دوگوشي</b>
+			<p>تكنولوژي ضربانهاي دوگوشي اخیراً در محیط آكادمیک و مجلات طب مكمل و جايگزين مورد بحث قرار ميگیرد و تحقیقات علمي بر اين پديده حائز اهمیت است. هنگامي كه دو موج صوتي با فركانس كمي متفاوت از طريق هدفون به گوش چپ و راست اعمال شوند، دو نیمكره مغزي در هماهنگي با يكديگر عمل ميكنند. صوت خارجي شنیده نميشود و آنچه كه توسط مغز درک ميگردد يک موج سوم مجازي به نام ضربان دوگوشي )باينورال( با فركانسي برابر اختلاف فركانس بین دو صوت است. اين فركانس، فعالیت مغز را به سوي الگوهاي ويژه و سازمان يافتهاي هدايت ميكند كه براي ترمیم تعادل و سلامت فرد بسیار موثر خواهد بود.</p>
+			<p>ضربان دوگوشی در سال 1839 توسط دانشمند آلمانی کشف شد. امروزه از ضربان دوگوشی به‌عنوان فناوری سرگرمی-های مغزی برای بازگشایی پتانسیل های پنهان مغز یاد می‌شود. مغز هر فرد قادر است امواج متفاوتی تولید کند. بازه فرکانسی این امواج از امواج دلتا (0 تا 4 هرتز) تا امواج گاما (بیشتر از 30 هرتز) را شامل می‌شود. گوش انسان قادر به شنیدن فرکانس بین 20 تا 20000 هرتز است و درنتیجه فرکانس های زیر 20 هرتز برای گوش قابل‌درک نیست. بااین‌وجود، ضربان دوگوشی مغز را فریب می‌دهد. به‌نحوی‌که وقتی فرد به دو فرکانس متفاوت گوش دهد، مغز به یک‌صدای سوم که ضربان دوگوشی نامیده می‌شود، واکنش نشان داده و سیستم عصبی فرد را تغییر می‌دهد. برای مثال، اگر به یک گوش صوتی با فرکانس 420 هرتز و به گوش دیگر صوتی با فرکانس 410 هرتز اعمال گردد، مغز صدای سومی برابر با اختلاف فرکانسی این دو صوت، یعنی با فرکانس 10 هرتز را درک می‌کند.</p>
+			<p>امواج مغزی خود دارای چند محدوده فرکانسی می‌باشند که در زیر توضیح داده‌شده‌اند:</p>
+			<p>1.	امواج دلتا: این امواج در محدوده فرکانسی 0 تا 4 هرتز بوده و مرتبط با خواب عمیق هستند. همچنین با افزایش سطح هورمون رشد مرتبط می‌گردند.</p>
+			<p>2.	امواج تتا: در بازه فرکانسی 4 تا 8 هرتز بوده و حالت استراحت و آرامش عمیق را شامل می‌شوند. همچنین یا خلاقیت، خواب سبک و رؤیاپردازی مرتبط هستند.</p>
+			<p>3.	امواج آلفا: در محدوده 8 تا 13 هرتز بوده و نشان‌دهنده آگاهی آرام می‌باشد. این امواج برای تفکر، حل مسئله، خلاقیت بالا و قدرت تجسم مفید هستند.</p>
+			<p>4.	امواج بتا: بازه فرکانسی این امواج از 13 تا 30 هرتز است و ماهیت آن ها مرتبط با آگاهی کامل و هوشیاری است. این امواج برای منطق و استدلال حیاتی بوده و با استرس و اضطراب نیز ارتباط دارد.</p>
+			<p>5.	امواج گاما: دارای فرکانس بیشتر از 30 هرتز بوده و مربوط به ادراک و فعالیت ذهنی در سطح بالاست.</p>
+			<p>ضربان دوگوشی با توجه به فرکانسی که دارد در محدوده یکی از امواج مغزی قرار می گیرد و بر مغز اثر می‌گذارد. ضربان دوگوشی می تواند عملیات خاصی نظیر تقویت حافظه، آرامش، کاهش اضطراب و استرس و تمرکز عمیق را در مغز ایجاد کند. برای مثال، ضربان دوگوشی در محدوده ی باند آلفا و تتا موجب ایجاد آرامش در شرایط عدم اطمینان خاطر می-شوند. اعتمادبه‌نفس پائین اغلب با احساس نگرانی از حضور در مکان هایی مانند مهمانی ها، جلسات کاری و سخنرانی ها پیش می آید. در این شرایط افکار منفی به ضمیر ناخودآگاه فرد حمله کرده و باعث واهمه ی فرد از مواجه‌شدن در این نوع مکان ها می شود. ضربان دوگوشی برای کنترل و هدایت احساسات منفی در چنین شرایطی به‌شدت موفق و مفید عمل می کند.</p>
 		</td></tr>
 		<tr><td class="page-table-copy" colspan="2">&copy; lokamed</td></tr>
 	</table>
