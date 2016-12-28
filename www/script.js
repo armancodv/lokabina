@@ -159,7 +159,7 @@ app.controller('myCtrl', function($scope, $http) {
 	$scope.init = function(){
 		$scope.show_error_bazaar=null;
 		$scope.products_list=[{'title':'افزایش اعتبار 1000 تومان','productId':'1000'},{'title':'افزایش اعتبار 2000 تومان','productId':'2000'},{'title':'افزایش اعتبار 3000 تومان','productId':'3000'},{'title':'افزایش اعتبار 4000 تومان','productId':'4000'},{'title':'افزایش اعتبار 5000 تومان','productId':'5000'},{'title':'افزایش اعتبار 6000 تومان','productId':'6000'},{'title':'افزایش اعتبار 7000 تومان','productId':'7000'},{'title':'افزایش اعتبار 8000 تومان','productId':'8000'},{'title':'افزایش اعتبار 9000 تومان','productId':'9000'},{'title':'افزایش اعتبار 10000 تومان','productId':'10000'}];
-		inappbilling.init($scope.success_init, $scope.error_bazaar, {showLog:true}, "com.farsitel.bazaar", "ir.cafebazaar.pardakht.InAppBillingService.BIND", "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDDuij6c28GU1vG7ZNtl+44bDALVWH4vCfHqmFOf6OfAbbgw4Y8U2l+kCecWyu3JBG0kTUiXg3pvE9Lpa2YnyOjO5TV52L3pZ6GJxXpIj9owxHqijEMLooG0bb55tdDynNfuN+fHHsghd/BdLrdjYH2iUmYGUehP5Z9C4ImRg2KC3+cNe8Vt4nSIG+2RKG82LZf0u6xAm9bSIXY0D000TY37EUndx93Yu2cSINsSI8CAwEAAQ==");
+		inappbilling.init($scope.success_init, $scope.error_bazaar, {showLog:true}, "com.farsitel.bazaar", "ir.cafebazaar.pardakht.InAppBillingService.BIND", "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDDdeercq92ZqpP5EL83uFMs2I4bMogkmP2i1SITyyAcZpUEiMB/2YBBDkHbkspGQakuSEKkJghCdckWk+zmGaEv7NtryxI2mZZjXt4Sndoam/7D5Q6TUJrwbmc9lYL0n7vBRw7LmBN/3TQbk9jQiZwFfUqZb48J3sY7mJENJea8RI33ss8ng6cnqlj86Z7OZox/NplCwzgfyRbxBmRA8NYgFKGZ/XEibcbFYMDJ20CAwEAAQ==");
 	}
 
 	$scope.products = function(){
