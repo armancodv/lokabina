@@ -37,11 +37,11 @@
 </tr>
 <tr class="page-table-subbar">
 	<td class="page-table-subbar-right">
-		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(4)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">ورود</span>
+		<span ng-if="login_data['checklogin']!=true" ng-click="gotopage(4)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">ورود</span>
 		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(4)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">{{login_data['name']}}</span>
 	</td>
 	<td class="page-table-subbar-left">
-		<span ng-if="login_data['checklogin']==false" ng-click="gotopage(5)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">ثبت نام</span>
+		<span ng-if="login_data['checklogin']!=true" ng-click="gotopage(5)" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">ثبت نام</span>
 		<span ng-if="login_data['checklogin']==true" ng-click="gotopage(6);init()" style="background-color: #111111; padding: 4px 10px; border-radius: 40px">اعتبار شما: {{login_data['credit']}} تومان</span>
 	</td>
 </tr>
@@ -107,7 +107,7 @@
 				<tr><td class="sound-text">
 					<span class="sound-name">{{sounds[sound_selected]['name']}}</span>
 					<span class="sound-time">{{sounds[sound_selected]['time']}} دقیقه</span><br>
-					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==false)"><table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(4)"><tr><td>ورود</td></tr></table></div>
+					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']!=true)"><table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(4)"><tr><td>ورود</td></tr></table></div>
 					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])>=sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="purchase(sound_selected)"><tr><td>خرید</td></tr></table></div>
 					<div ng-if="(soundaccess[sound_selected]['access']==false)&&(login_data['checklogin']==true)&&((login_data['credit']+login_data['coupon'])<sounds[sound_selected]['cost'])"><table cellpadding="0" cellspacing="0" class="button" ng-click="gotopage(6);init()"><tr><td>افزایش اعتبار</td></tr></table></div>
 					<br><span class="sound-cost">{{sounds[sound_selected]['cost']}} تومان</span><br>
@@ -122,7 +122,7 @@
 
 <div id="page4">
 	<table cellpadding="0" cellspacing="0" class="page-table">
-		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']==false">
+		<tr><td class="page-table-main" colspan="2" ng-if="login_data['checklogin']!=true">
 			<p ng-if="password_data['checkpassword']==false" class="error">نام کاربری و کلمه عبور نامعتبر می باشد.</p>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">نام کاربری</td><td class="input-value"><input type="text" ng-model="username2" dir="ltr"></td></tr></table>
 			<table cellpadding="0" cellspacing="0" class="input"><tr><td class="input-lable">کلمه عبور</td><td class="input-value"><input type="password" ng-model="password" dir="ltr"></td></tr></table>
